@@ -43,4 +43,30 @@ public class XMLService {
         }
         return (currencies);
     }
+
+    public List<Currency> parseCurrencyHist() {
+
+        String url = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml";
+        try{
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            document = db.parse(new URL(url).openStream());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        NodeList list = document.getElementsByTagName("Cube");
+        String time = LocalDate.now().toString();
+        List<Currency> currencies = new ArrayList<>();
+        for(int i = 1; i < list.getLength();i++){
+            Node nodeTime = list.item(i);
+            Element element = (Element) nodeTime;
+            if(element.hasAttribute("time")){
+                time = element.getAttribute("time");
+            }else {
+                currency = new Currency(time, "EUR", element.getAttribute("currency"), Double.parseDouble(element.getAttribute("rate")) );
+                currencies.add(currency);
+            }
+        }
+        return (currencies);
+    }
 }
