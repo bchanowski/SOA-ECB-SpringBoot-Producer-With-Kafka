@@ -8,4 +8,5 @@ Aplikacja Spring Boot przy uruchomieniu pobiera dane na 90 dni wstecz z XML'a EC
 1. Uruchomić Kafka Zookeeper
 2. Uruchomić Kafka Server
 3. Aby sprawdzić działanie (dodawanie rekordów do bazy) uruchomić [drugą aplikację](https://github.com/KamilPalubicki/SOA-ECB-SpringBoot-Consumer) 
-4. Uruchomić aplikację
+4. Uruchomić aplikację  
+5. Uruchomić [trzeci mikroserwis API](https://github.com/Kacper-Pohl/SOA-ECB-SpringBoot-API)
